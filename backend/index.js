@@ -1,0 +1,20 @@
+const express = require('express');
+const cors = require('cors');
+const app = express();
+
+app.use(cors());
+app.use(express.json());
+
+// Rutas
+const estudiantesRoutes = require('./routes/estudiantes');
+app.use('/api/estudiantes', estudiantesRoutes);
+
+// Ruta base
+app.get('/', (req, res) => {
+  res.send('API Academia funcionando');
+});
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor corriendo en http://localhost:${PORT}`);
+});
