@@ -9,6 +9,9 @@ app.use(express.json());
 const estudiantesRoutes = require('./routes/estudiantes');
 app.use('/api/estudiantes', estudiantesRoutes);
 
+const pagosRoutes = require('./routes/pagos');
+app.use('/api/pagos', pagosRoutes);
+
 // Ruta base
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
