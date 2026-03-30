@@ -18,6 +18,9 @@ app.use('/api/materias', materiasRoutes);
 const gruposRoutes = require('./routes/grupos');
 app.use('/api/grupos', gruposRoutes);
 
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 // Ruta base
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
