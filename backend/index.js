@@ -5,23 +5,25 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Rutas
-const estudiantesRoutes = require('./routes/estudiantes');
-app.use('/api/estudiantes', estudiantesRoutes);
+const { verificarToken, soloAdmin } = require('./middleware/auth');
 
-const pagosRoutes = require('./routes/pagos');
-app.use('/api/pagos', pagosRoutes);
-
-const materiasRoutes = require('./routes/materias');
-app.use('/api/materias', materiasRoutes);
-
-const gruposRoutes = require('./routes/grupos');
-app.use('/api/grupos', gruposRoutes);
-
+// Ruta publica
 const authRoutes = require('./routes/auth');
 app.use('/api/auth', authRoutes);
 
-// Ruta base
+// Rutas protegidas
+const estudiantesRoutes = require('./routes/estudiantes');
+app.use('/api/estudiantes', verificarToken, estudiantesRoutes);
+
+const pagosRoutes = require('./routes/pagos');
+app.use('/api/pagos', verificarToken, pagosRoutes);
+
+const materiasRoutes = require('./routes/materias');
+app.use('/api/materias', verificarToken, materiasRoutes);
+
+const gruposRoutes = require('./routes/grupos');
+app.use('/api/grupos', verificarToken, gruposRoutes);
+
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
 });
