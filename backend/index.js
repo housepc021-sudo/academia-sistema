@@ -12,6 +12,12 @@ app.use('/api/estudiantes', estudiantesRoutes);
 const pagosRoutes = require('./routes/pagos');
 app.use('/api/pagos', pagosRoutes);
 
+const materiasRoutes = require('./routes/materias');
+app.use('/api/materias', materiasRoutes);
+
+const gruposRoutes = require('./routes/grupos');
+app.use('/api/grupos', gruposRoutes);
+
 // Ruta base
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
