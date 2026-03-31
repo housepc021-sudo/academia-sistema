@@ -1,10 +1,28 @@
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+
+function RutaProtegida({ children }) {
+  const { token } = useAuth();
+  return token ? children : <Navigate to="/login" />;
+}
+
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <h1 className="text-3xl font-bold text-gray-800">
-        Academia de Moda — Sistema
-      </h1>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={
+            <RutaProtegida>
+              <Dashboard />
+            </RutaProtegida>
+          } />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
