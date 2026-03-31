@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import Estudiantes from './Estudiantes';
 import Pagos from './Pagos';
+import Materias from './Materias';
 
 export default function Dashboard() {
   const { usuario, logout } = useAuth();
@@ -52,12 +53,27 @@ export default function Dashboard() {
   >
     Pagos
   </button>
+    </li>
+<li>
+  <button
+    onClick={() => setSeccion('materias')}
+    className={`w-full text-left px-3 py-2 rounded text-sm transition ${
+      seccion === 'materias'
+        ? 'bg-gray-800 text-white'
+        : 'text-gray-600 hover:bg-gray-100'
+    }`}
+  >
+    Materias y Grupos
+  </button>
 </li>
+
+
         </aside>
 
         <main className="flex-1 p-6">
           {seccion === 'estudiantes' && <Estudiantes />}
           {seccion === 'pagos' && <Pagos />}
+          {seccion === 'materias' && <Materias />}
         </main>
       </div>
     </div>
