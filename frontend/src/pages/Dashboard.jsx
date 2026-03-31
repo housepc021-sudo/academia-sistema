@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import Estudiantes from './Estudiantes';
 
 export default function Dashboard() {
   const { usuario, logout } = useAuth();
+  const [seccion, setSeccion] = useState('estudiantes');
 
   return (
     <div className="min-h-screen bg-gray-100">
@@ -19,12 +22,29 @@ export default function Dashboard() {
           </button>
         </div>
       </nav>
-      <main className="p-6">
-        <h2 className="text-xl font-semibold text-gray-700">
-          Bienvenido, {usuario?.nombre}
-        </h2>
-        <p className="text-gray-500 mt-1">Panel de administración</p>
-      </main>
+
+      <div className="flex">
+        <aside className="w-48 min-h-screen bg-white shadow-sm p-4">
+          <ul className="space-y-1">
+            <li>
+              <button
+                onClick={() => setSeccion('estudiantes')}
+                className={`w-full text-left px-3 py-2 rounded text-sm transition ${
+                  seccion === 'estudiantes'
+                    ? 'bg-gray-800 text-white'
+                    : 'text-gray-600 hover:bg-gray-100'
+                }`}
+              >
+                Estudiantes
+              </button>
+            </li>
+          </ul>
+        </aside>
+
+        <main className="flex-1 p-6">
+          {seccion === 'estudiantes' && <Estudiantes />}
+        </main>
+      </div>
     </div>
   );
 }
