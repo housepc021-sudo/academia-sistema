@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import Estudiantes from './Estudiantes';
+import Pagos from './Pagos';
 
 export default function Dashboard() {
   const { usuario, logout } = useAuth();
@@ -39,10 +40,24 @@ export default function Dashboard() {
               </button>
             </li>
           </ul>
+
+          <li>
+  <button
+    onClick={() => setSeccion('pagos')}
+    className={`w-full text-left px-3 py-2 rounded text-sm transition ${
+      seccion === 'pagos'
+        ? 'bg-gray-800 text-white'
+        : 'text-gray-600 hover:bg-gray-100'
+    }`}
+  >
+    Pagos
+  </button>
+</li>
         </aside>
 
         <main className="flex-1 p-6">
           {seccion === 'estudiantes' && <Estudiantes />}
+          {seccion === 'pagos' && <Pagos />}
         </main>
       </div>
     </div>
