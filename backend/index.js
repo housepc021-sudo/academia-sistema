@@ -33,6 +33,9 @@ app.use('/api/asistencia', verificarToken, asistenciaRoutes);
 const accesoRoutes = require('./routes/acceso');
 app.use('/api/acceso', accesoRoutes);
 
+const estadisticasRoutes = require('./routes/estadisticas');
+app.use('/api/estadisticas', verificarToken, estadisticasRoutes);
+
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
 });
