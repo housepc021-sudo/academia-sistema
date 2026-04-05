@@ -24,6 +24,9 @@ app.use('/api/materias', verificarToken, materiasRoutes);
 const gruposRoutes = require('./routes/grupos');
 app.use('/api/grupos', verificarToken, gruposRoutes);
 
+const inscripcionesRoutes = require('./routes/inscripciones');
+app.use('/api/inscripciones', verificarToken, inscripcionesRoutes);
+
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
 });

@@ -3,6 +3,7 @@ import { useAuth } from '../context/AuthContext';
 import Estudiantes from './Estudiantes';
 import Pagos from './Pagos';
 import Materias from './Materias';
+import Inscripciones from './Inscripciones';
 
 export default function Dashboard() {
   const { usuario, logout } = useAuth();
@@ -11,10 +12,10 @@ export default function Dashboard() {
   return (
     <div className="min-h-screen bg-gray-100">
       <nav className="bg-white shadow px-6 py-4 flex justify-between items-center">
-        <h1 className="font-bold text-gray-800">Academia de Moda</h1>
-        <div className="flex items-center gap-4">
+        <h1 className="font-bold text-grey-800">Academia de Moda</h1>
+        <div className="flex items-center gap-5">
           <span className="text-sm text-gray-600">
-            {usuario?.nombre} — {usuario?.rol}
+            {usuario?.nombre} ➡️ {usuario?.rol}
           </span>
           <button
             onClick={logout}
@@ -67,6 +68,18 @@ export default function Dashboard() {
   </button>
 </li>
 
+<li>
+  <button
+    onClick={() => setSeccion('inscripciones')}
+    className={`w-full text-left px-3 py-2 rounded text-sm transition ${
+      seccion === 'inscripciones'
+        ? 'bg-gray-800 text-white'
+        : 'text-gray-600 hover:bg-gray-100'
+    }`}
+  >
+    Inscripciones
+  </button>
+</li>
 
         </aside>
 
@@ -74,6 +87,7 @@ export default function Dashboard() {
           {seccion === 'estudiantes' && <Estudiantes />}
           {seccion === 'pagos' && <Pagos />}
           {seccion === 'materias' && <Materias />}
+          {seccion === 'inscripciones' && <Inscripciones />}
         </main>
       </div>
     </div>
