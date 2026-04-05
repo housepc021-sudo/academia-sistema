@@ -4,6 +4,7 @@ import Estudiantes from './Estudiantes';
 import Pagos from './Pagos';
 import Materias from './Materias';
 import Inscripciones from './Inscripciones';
+import Asistencia from './Asistencia';
 
 export default function Dashboard() {
   const { usuario, logout } = useAuth();
@@ -80,7 +81,18 @@ export default function Dashboard() {
     Inscripciones
   </button>
 </li>
-
+<li>
+  <button
+    onClick={() => setSeccion('asistencia')}
+    className={`w-full text-left px-3 py-2 rounded text-sm transition ${
+      seccion === 'asistencia'
+        ? 'bg-gray-800 text-white'
+        : 'text-gray-600 hover:bg-gray-100'
+    }`}
+  >
+    Asistencia
+  </button>
+</li>
         </aside>
 
         <main className="flex-1 p-6">
@@ -88,6 +100,7 @@ export default function Dashboard() {
           {seccion === 'pagos' && <Pagos />}
           {seccion === 'materias' && <Materias />}
           {seccion === 'inscripciones' && <Inscripciones />}
+          {seccion === 'asistencia' && <Asistencia />}
         </main>
       </div>
     </div>
