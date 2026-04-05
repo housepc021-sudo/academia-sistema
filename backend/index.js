@@ -36,6 +36,9 @@ app.use('/api/acceso', accesoRoutes);
 const estadisticasRoutes = require('./routes/estadisticas');
 app.use('/api/estadisticas', verificarToken, estadisticasRoutes);
 
+const publicoRoutes = require('./routes/publico');
+app.use('/api/publico', publicoRoutes);
+
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
 });
