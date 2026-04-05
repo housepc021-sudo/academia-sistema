@@ -5,6 +5,7 @@ import Pagos from './Pagos';
 import Materias from './Materias';
 import Inscripciones from './Inscripciones';
 import Asistencia from './Asistencia';
+import AccesoLog from './AccesoLog';
 
 export default function Dashboard() {
   const { usuario, logout } = useAuth();
@@ -91,6 +92,19 @@ export default function Dashboard() {
     }`}
   >
     Asistencia
+  </button>
+</li>
+
+<li>
+  <button
+    onClick={() => setSeccion('acceso')}
+    className={`w-full text-left px-3 py-2 rounded text-sm transition ${
+      seccion === 'acceso'
+        ? 'bg-gray-800 text-white'
+        : 'text-gray-600 hover:bg-gray-100'
+    }`}
+  >
+    Log de accesos
   </button>
 </li>
         </aside>

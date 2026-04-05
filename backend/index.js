@@ -30,6 +30,9 @@ app.use('/api/inscripciones', verificarToken, inscripcionesRoutes);
 const asistenciaRoutes = require('./routes/asistencia');
 app.use('/api/asistencia', verificarToken, asistenciaRoutes);
 
+const accesoRoutes = require('./routes/acceso');
+app.use('/api/acceso', accesoRoutes);
+
 app.get('/', (req, res) => {
   res.send('API Academia funcionando');
 });
