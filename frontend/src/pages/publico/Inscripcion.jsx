@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState } from 'react';
 import axios from 'axios';
 
@@ -16,7 +17,7 @@ export default function Inscripcion() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:3000/api/publico/solicitud-inscripcion', form);
+      await axios.post(`${API_URL}/api/publico/solicitud-inscripcion`, form);
       setEnviado(true);
     } catch (err) {
       setError(err.response?.data?.error || 'Error al enviar solicitud');

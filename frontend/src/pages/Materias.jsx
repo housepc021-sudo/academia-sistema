@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -15,8 +16,8 @@ export default function Materias() {
 
   const cargarDatos = async () => {
     const [m, g] = await Promise.all([
-      axios.get('http://localhost:3000/api/materias', { headers }),
-      axios.get('http://localhost:3000/api/grupos', { headers })
+      axios.get(`${API_URL}/api/materias`, { headers }),
+      axios.get(`${API_URL}/api/grupos`, { headers })
     ]);
     setMaterias(m.data);
     setGrupos(g.data);
@@ -28,7 +29,7 @@ export default function Materias() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:3000/api/materias', {
+      await axios.post(`${API_URL}/api/materias`, {
         ...formMateria,
         horas: parseInt(formMateria.horas)
       }, { headers });
@@ -45,7 +46,7 @@ export default function Materias() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:3000/api/grupos', {
+      await axios.post(`${API_URL}/api/grupos`, {
         ...formGrupo,
         materia_id: parseInt(formGrupo.materia_id)
       }, { headers });

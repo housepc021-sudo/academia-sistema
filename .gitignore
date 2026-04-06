@@ -6,3 +6,5 @@ build/
 *.log
 .DS_Store
 Thumbs.db
+frontend/.env.production
+frontend/.env.development

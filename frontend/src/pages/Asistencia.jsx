@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -17,9 +18,9 @@ export default function Asistencia() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:3000/api/grupos', { headers }),
-      axios.get('http://localhost:3000/api/materias', { headers }),
-      axios.get('http://localhost:3000/api/estudiantes', { headers }),
+      axios.get(`${API_URL}/api/grupos`, { headers }),
+      axios.get(`${API_URL}/api/materias`, { headers }),
+      axios.get(`${API_URL}/api/estudiantes`, { headers }),
     ]).then(([g, m, e]) => {
       setGrupos(g.data);
       setMaterias(m.data);
@@ -28,7 +29,7 @@ export default function Asistencia() {
   }, []);
 
   const cargarAsistencia = async (id) => {
-    const res = await axios.get(`http://localhost:3000/api/asistencia/grupo/${id}`, { headers });
+    const res = await axios.get(`${API_URL}/api/asistencia/grupo/${id}`, { headers });
     setAsistencia(res.data);
   };
 
@@ -42,7 +43,7 @@ export default function Asistencia() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:3000/api/asistencia', {
+      await axios.post(`${API_URL}/api/asistencia`, {
         estudiante_id: parseInt(form.estudiante_id),
         grupo_id: parseInt(grupoSeleccionado),
         tipo: form.tipo,

@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -17,7 +18,7 @@ export default function Estudiantes() {
 
   const cargarEstudiantes = async () => {
     try {
-      const res = await axios.get('http://localhost:3000/api/estudiantes', { headers });
+      const res = await axios.get(`${API_URL}/api/estudiantes`, { headers });
       setEstudiantes(res.data);
     } catch (err) {
       setError('Error al cargar estudiantes');
@@ -38,7 +39,7 @@ export default function Estudiantes() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:3000/api/estudiantes', form, { headers });
+      await axios.post(`${API_URL}/api/estudiantes`, form, { headers });
       setExito('Estudiante registrado correctamente');
       setForm({ nombre: '', cedula: '', telefono: '', email: '' });
       setMostrarForm(false);

@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -19,7 +20,7 @@ export default function Resumen() {
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/estadisticas', { headers })
+    axios.get(`${API_URL}/api/estadisticas`, { headers })
       .then(res => setStats(res.data))
       .finally(() => setCargando(false));
   }, []);

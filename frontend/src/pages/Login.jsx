@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axios from 'axios';
@@ -19,7 +20,7 @@ export default function Login() {
     setCargando(true);
     setError('');
     try {
-      const res = await axios.post('http://localhost:3000/api/auth/login', form);
+      const res = await axios.post(`${API_URL}/api/auth/login`, form);
       login(res.data);
       navigate('/dashboard');
     } catch (err) {

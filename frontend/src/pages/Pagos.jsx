@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -14,14 +15,14 @@ export default function Pagos() {
   const headers = { Authorization: `Bearer ${token}` };
 
   useEffect(() => {
-    axios.get('http://localhost:3000/api/estudiantes', { headers })
+    axios.get(`${API_URL}/api/estudiantes`, { headers })
       .then(res => setEstudiantes(res.data))
       .catch(() => setError('Error al cargar estudiantes'));
   }, []);
 
   const cargarPagos = async (id) => {
     try {
-      const res = await axios.get(`http://localhost:3000/api/pagos/estudiante/${id}`, { headers });
+      const res = await axios.get(`${API_URL}/api/pagos/estudiante/${id}`, { headers });
       setPagos(res.data);
     } catch {
       setPagos([]);
@@ -46,7 +47,7 @@ export default function Pagos() {
       return;
     }
     try {
-      await axios.post('http://localhost:3000/api/pagos', {
+      await axios.post(`${API_URL}/api/pagos`, {
         estudiante_id: parseInt(estudianteSeleccionado),
         monto: parseFloat(form.monto),
         metodo: form.metodo,

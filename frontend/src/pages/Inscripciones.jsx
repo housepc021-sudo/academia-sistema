@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
@@ -16,10 +17,10 @@ export default function Inscripciones() {
 
   const cargarDatos = async () => {
     const [i, e, g, m] = await Promise.all([
-      axios.get('http://localhost:3000/api/inscripciones', { headers }),
-      axios.get('http://localhost:3000/api/estudiantes', { headers }),
-      axios.get('http://localhost:3000/api/grupos', { headers }),
-      axios.get('http://localhost:3000/api/materias', { headers }),
+      axios.get(`${API_URL}/api/inscripciones`, { headers }),
+      axios.get(`${API_URL}/api/estudiantes`, { headers }),
+      axios.get(`${API_URL}/api/grupos`, { headers }),
+      axios.get(`${API_URL}/api/materias`, { headers }),
     ]);
     setInscripciones(i.data);
     setEstudiantes(e.data);
@@ -33,7 +34,7 @@ export default function Inscripciones() {
     e.preventDefault();
     setError('');
     try {
-      await axios.post('http://localhost:3000/api/inscripciones', {
+      await axios.post(`${API_URL}/api/inscripciones`, {
         estudiante_id: parseInt(form.estudiante_id),
         grupo_id: parseInt(form.grupo_id),
         modalidad: form.modalidad
@@ -50,7 +51,7 @@ export default function Inscripciones() {
   const cancelar = async (id) => {
     if (!confirm('¿Cancelar esta inscripcion?')) return;
     try {
-      await axios.patch(`http://localhost:3000/api/inscripciones/${id}/cancelar`, {}, { headers });
+      await axios.patch(`${API_URL}/api/inscripciones/${id}/cancelar`, {}, { headers });
       cargarDatos();
     } catch {
       setError('Error al cancelar');

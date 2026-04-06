@@ -1,3 +1,4 @@
+import API_URL from '../config';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -8,8 +9,8 @@ export default function Cursos() {
 
   useEffect(() => {
     Promise.all([
-      axios.get('http://localhost:3000/api/publico/materias'),
-      axios.get('http://localhost:3000/api/publico/grupos'),
+      axios.get(`${API_URL}/api/publico/materias`),
+      axios.get(`${API_URL}/api/publico/grupos`),
     ]).then(([m, g]) => {
       setMaterias(m.data);
       setGrupos(g.data);
